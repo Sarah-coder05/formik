@@ -70,4 +70,4 @@ function Oldform() {
     )
 }
 
-export default oldform
+export default Oldform
