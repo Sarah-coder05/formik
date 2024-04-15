@@ -35,7 +35,7 @@ const validationSchema = Yup.object({
 });
 
 function Oldform() {
-  const formik = useFormik ({
+  const formik = useFormik({
     initialValues,
     onSubmit: (values) => {
       console.log('Form data', values);
