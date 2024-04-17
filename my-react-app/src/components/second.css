@@ -1,0 +1,81 @@
+form{
+    margin: 50px;
+    
+}
+.first-box{
+    display: flex;
+    gap: 30px;
+    height: 30px;
+}
+.fname{
+    margin-top: 5px;
+}
+.full-name{
+    display: flex;
+    gap: 23em;
+    padding-top: 5px;
+    margin-left: 110px
+}
+.address{
+    display: flex;
+    gap: 50px;
+    /* height: 10px; */
+}
+input[id="address"]{
+    width: 850px;
+}
+.street-address{
+    margin-left: 105px;
+    display: flex;
+    gap: 30px;
+    height: 30px;
+}
+.full-address{
+    display: flex;
+    gap: 26.5em;
+    padding-top: 5px;
+    margin-left: 110px
+}
+input[id="date"]{
+    width: 250px;
+}
+.birth-date{
+    display: flex;
+    gap: 16.5em;
+    padding-top: 5px;
+    margin-left: 110px
+}
+.gender-options{
+    display: flex;
+    gap: 40px
+}
+.gender{
+    display: flex;
+    gap: 15.5em;
+}
+.calendar{
+    display: flex;
+    gap: 5px;
+}
+.female {
+    margin-top: 15px;
+}
+/* p{
+    margin-right: 50px;
+} */
+.courses{
+    display: flex;
+    gap: 10em;
+}
+textarea#notes {
+    width: 850px;
+}
+.comments{
+    display: flex;
+    gap: 50px;
+    margin-top: 20px
+}
+.name{
+    display: flex;
+    gap: 10px;
+}
