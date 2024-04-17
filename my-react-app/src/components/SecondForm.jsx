@@ -1,131 +1,112 @@
-import "./second.css"
+import React from "react";
+import { Formik, Form } from "formik";
+import "./second.css";
+import * as Yup from "yup";
+import FormInput from "./FormInput";
+import FormRadioGroup from "./FormRadioGroup";
+import FormTextArea from "./FormTextArea";
+
+const initialValues = {
+  fullname: "",
+  address: "",
+  birthdate: "",
+  gender: "",
+  number: "",
+  email: "",
+  company: "",
+  courses: "",
+  comments: "",
+};
+
+const onSubmit = (values) => {
+  console.log("Form data", values);
+};
+
+const validationSchema = Yup.object({
+  fullname: Yup.string().required("Required!"),
+  address: Yup.string().required("Required!"),
+  birthdate: Yup.string().required("Required!"),
+  gender: Yup.string().required("Required!"),
+  number: Yup.string().required("Required!"),
+  email: Yup.string().email("Invalid email format").required("Required!"),
+  company: Yup.string().required("Required!"),
+  courses: Yup.string().required("Required!"),
+  comments: Yup.string().optional("optional"),
+});
+
 function SecondForm() {
-    return(
-        <div>
-            <form>
-                <div className="first-box">
-                    <p class='fname'>Full Name</p>
-                    <input type='text' id='fname' name='fname'/>
-                    <input type='text' id='lname' name='lname'/>
-                </div>
-                <div className="full-name">
-                    <label>First Name</label>
-                    <label>Last Name</label>
-                </div>
-                <div className='address'>
-                    <p class='fname'>Address</p>
-                    <div className='addresss'>
-                        <input type='text' id='address' name='address'/>
-                    </div>
-                </div>
-                <label className="full-name">Street Address</label>
-                <div className="street-address">
-                    <input type='text' id='city' name='city'/>
-                    <input type='text' id='province' name='province'/>
-                </div>
-                <div className="full-address">
-                    <label>City</label>
-                    <label>State/province</label>
-                </div>
-                <div className="first-box">
-                    <p >Birth date</p>
-                    <input type='text' id='date' name='month'/>
-                    <input type='text' id='date' name='day'/>
-                    <input type='text' id='date' name='year'/>
-                </div>
-                <div className='birth-date'>
-                    <label>Month</label>
-                    <label>Day</label>
-                    <label>Year</label>
-                </div>
-                <div class="gender-options">
-                    <p>Gender</p>
-                   <div className="gender">
-                        <div className='calendar'>
-                            <input type="radio" id='radio' name="gender" required />
-                            <label className="female"> Male</label>
-                        </div>
-                        <div className='calendar'>
-                            <input type="radio" id='radio' name="gender" required /> 
-                            <label className="female">Female</label>
-                        </div>
-                        <div className='calendar'>
-                            <input type="radio" id='radio' name="gender" required />
-                            <label className="female"> N/A </label>
-                        </div>
-                   </div>
-                </div>
-                <div className='address'>
-                    <p class='fname'>Number</p>
-                    <div className='addresss'>
-                        <input type='text' id='address' name='address'/>
-                    </div>
-                </div>
-                <label className="full-name">Phone Number</label>
-                <div className='address'>
-                    <p class='fname'>S/Email</p>
-                    <div className='addresss'>
-                        <input type='text' id='address' name='address'/>
-                    </div>
-                </div>
-                <label className="full-name">example@example.com</label>
-                <div className='address'>
-                    <p class='fname'>Company</p>
-                    <div className='addresss'>
-                        <input type='text' id='address' name='address'/>
-                    </div>
-                </div>
-                <div className="courses">
-                    <p>Courses</p>
-                    <div >
-                        <div className='calendar'>
-                            <input type="radio" id='radio' name="gender" required />
-                            <label className="female"> English 101</label>
-                        </div>
-                        <div className='calendar'>
-                            <input type="radio" id='radio' name="gender" required />
-                            <label className="female"> Creative writind</label>
-                        </div>
-                        <div className='calendar'>
-                            <input type="radio" id='radio' name="gender" required />
-                            <label className="female"> Maths 101</label>
-                        </div>
-                    </div>
-                    <div>
-                        <div className='calendar'>
-                            <input type="radio" id='radio' name="gender" required /> 
-                            <label className="female">History 202</label>
-                        </div>
-                        <div className='calendar'>
-                            <input type="radio" id='radio' name="gender" required /> 
-                            <label className="female">English 102</label>
-                        </div>
-                        <div className='calendar'>
-                            <input type="radio" id='radio' name="gender" required /> 
-                            <label className="female">Maths 102</label>
-                        </div>
-                    </div>
-                    <div>
-                        <div className='calendar'>
-                            <input type="radio" id='radio' name="gender" required />
-                            <label className="female"> Creative writing 1</label>
-                        </div>
-                        <div className='calendar'>
-                            <input type="radio" id='radio' name="gender" required />
-                            <label className="female"> History 104</label>
-                        </div>
-                        <div className='calendar'>
-                            <input type="radio" id='radio' name="gender" required />
-                            <label className="female"> Windows 8 </label>
-                        </div>
-                    </div>
-                </div>
-                <div className="comments">
-                    <p for="notes">Comments</p>
-                    <textarea id="notes" name="notes" rows="6" cols="50"></textarea>
-                </div>
-            </form>
+  const genderOptions = [
+    { value: "male", label: "Male" },
+    { value: "female", label: "Female" },
+    { value: "na", label: "N/A" },
+  ];
+
+  const courseOptions = [
+    { value: "english101", label: "English 101" },
+    { value: "creativeWriting", label: "Creative Writing" },
+    { value: "maths101", label: "Maths 101" },
+    { value: "history202", label: "History 202" },
+    { value: "english102", label: "English 102" },
+    { value: "maths102", label: "Maths 102" },
+    { value: "creativeWriting1", label: "Creative Writing 1" },
+    { value: "history104", label: "History 104" },
+    { value: "windows8", label: "Windows 8" },
+  ];
+
+  return (
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
+    >
+      <Form>
+        <div className="name-container">
+          <FormInput label="First Name" name="firstName" type="text" />
+          <FormInput label="Last Name" name="lastName" type="text" />
         </div>
-    )
+        <FormInput label="Address" name="address" type="text" />
+        <FormInput label="City" name="city" type="text" />
+        <FormInput label="State/Province" name="province" type="text" />
+
+        <div className="first-box">
+          <FormInput label="Month" name="birthMonth" type="text" />
+          <FormInput label="Day" name="birthDay" type="text" />
+          <FormInput label="Year" name="birthYear" type="text" />
+        </div>
+
+        <div class="gender-options">
+          <FormRadioGroup
+            label="Gender"
+            name="gender"
+            options={genderOptions}
+          />
+        </div>
+        <div className="address">
+          <FormInput label="Phone Number" name="phoneNumber" type="text" />
+        </div>
+
+        <div className="address">
+          <FormInput label="Email" name="email" type="email" />
+        </div>
+
+        <div className="address">
+          <FormInput label="Company" name="company" type="text" />
+        </div>
+
+        <div className="courses">
+          <FormRadioGroup
+            label="Courses"
+            name="courses"
+            options={courseOptions}
+          />
+        </div>
+        <div className="comments">
+          <FormTextArea label="Comments" name="comments" rows="6" cols="50" />
+        </div>
+
+        <button type="submit">Submit</button>
+      </Form>
+    </Formik>
+  );
 }
 export default SecondForm;
